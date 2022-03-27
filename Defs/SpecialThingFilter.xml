@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <SpecialThingFilterDef>
+    <defName>CF_TagIt_AllowTagged</defName>
+    <label>allow tagged</label>
+    <description>Allow tagged things.</description>
+    <parentCategory>Root</parentCategory>
+    <allowedByDefault>true</allowedByDefault>
+    <saveKey>allowTagged</saveKey>
+    <workerClass>CF_TagIt.SpecialThingFilterWorker_Tagged</workerClass>
+  </SpecialThingFilterDef>
+
+  <SpecialThingFilterDef>
+    <defName>CF_TagIt_AllowUntagged</defName>
+    <label>allow untagged</label>
+    <description>Allow untagged things.</description>
+    <parentCategory>Root</parentCategory>
+    <allowedByDefault>true</allowedByDefault>
+    <saveKey>allowUntagged</saveKey>
+    <workerClass>CF_TagIt.SpecialThingFilterWorker_Untagged</workerClass>
+  </SpecialThingFilterDef>
+</Defs>

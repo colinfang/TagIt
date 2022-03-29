@@ -16,13 +16,17 @@ namespace CF_TagIt
 {
     public class SpecialThingFilterWorker_Tagged : SpecialThingFilterWorker
     {
-        public override bool Matches(Thing t) => t.TryGetComp<CompFilterTag>()?.IsTagged ?? false;
-
+        public override bool Matches(Thing t) => t.TryGetComp<CompFilterTag>() is { IsTagged: true };
+        // `.HasComp` doesn't work on inheritance, which is inconsistent with `.GetComp`
+        public override bool CanEverMatch(ThingDef def) => def.GetCompProperties<CompProperties_FilterTag>() is not null;
     }
 
     public class SpecialThingFilterWorker_Untagged : SpecialThingFilterWorker
     {
-        public override bool Matches(Thing t) => !(t.TryGetComp<CompFilterTag>()?.IsTagged ?? false);
+        public override bool Matches(Thing t) => t.TryGetComp<CompFilterTag>() is not { IsTagged: true };
+        // This is only used to decide whether the filter shows up. I hope it is not used for filtering otherwise it could potentially block some things
+        // `.HasComp` doesn't work on inheritance, which is inconsistent with `.GetComp`
+        public override bool CanEverMatch(ThingDef def) => def.GetCompProperties<CompProperties_FilterTag>() is not null;
 
     }
 
